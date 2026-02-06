@@ -1,0 +1,188 @@
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: var(--spacing-md);
+    cursor: pointer;
+    z-index: 1001;
+    /* Ensure above mobile menu */
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--color-primary);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+}
+
+/* Menu items container - Centered */
+.menu {
+    display: flex;
+    gap: var(--spacing-xl);
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    /* Take available space to center properly */
+}
+
+.menuItemWrapper {
+    position: relative;
+    /* Wrapper for dropdown positioning */
+}
+
+.navLink {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-family: var(--font-heading);
+    cursor: pointer;
+}
+
+.navLink:hover {
+    color: var(--color-primary);
+}
+
+.arrow {
+    margin-left: 6px;
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.hasDropdown:hover .arrow {
+    transform: rotate(180deg);
+}
+
+/* Dropdown */
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    min-width: 220px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 100;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.menuItemWrapper:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdownItem {
+    display: block;
+    padding: 0.8rem 1.2rem;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+.dropdownItem:hover {
+    background: var(--color-bg-light);
+    color: var(--color-primary);
+    transform: translateX(5px);
+}
+
+/* Logo Wrapper - Extreme Right */
+.fastLogoWrapper {
+    display: flex;
+    align-items: center;
+    /* Optional: Fixed width if needed, but flex handles it */
+}
+
+/* Mobile Styles */
+@media (max-width: 1024px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .container {
+        justify-content: space-between;
+    }
+
+    .menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 2rem;
+        transform: translateY(-100%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+    }
+
+    .menu.mobileMenuOpen {
+        transform: translateY(0);
+    }
+
+    .fastLogoWrapper {
+        display: none;
+        /* Hide custom logo on mobile if space is tight */
+    }
+
+    .menuItemWrapper {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropdown {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        background: rgba(0, 0, 0, 0.03);
+        margin-top: 0.5rem;
+        display: none;
+        opacity: 1;
+        /* For simple display toggle */
+        visibility: visible;
+    }
+
+    .menuItemWrapper:hover .dropdown {
+        display: block;
+        /* Simple hover for mobile usually tricky, usually click. But limiting scope. */
+    }
+}

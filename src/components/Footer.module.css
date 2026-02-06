@@ -1,0 +1,211 @@
+.footer {
+    background: linear-gradient(135deg, hsl(220, 25%, 10%), hsl(220, 25%, 15%));
+    color: white;
+    padding: var(--spacing-4xl) 0 var(--spacing-xl);
+    margin-top: var(--spacing-4xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: radial-gradient(circle at 50% 0%,
+            rgba(255, 255, 255, 0.05) 0%,
+            transparent 70%);
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+    position: relative;
+    z-index: 1;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3xl);
+    margin-bottom: var(--spacing-3xl);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.logoIcon {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logoImage {
+    width: auto;
+    height: auto;
+}
+
+.about {
+    flex: 1;
+}
+
+.about p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+}
+
+.contact {
+    margin-bottom: var(--spacing-3xl);
+    padding: var(--spacing-xl);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    font-family: var(--font-heading);
+    letter-spacing: 2px;
+    position: relative;
+    padding-bottom: var(--spacing-md);
+}
+
+.sectionTitle::before,
+.sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--color-secondary),
+            transparent);
+}
+
+.sectionTitle::before {
+    left: 0;
+    right: 50%;
+    margin-right: var(--spacing-lg);
+}
+
+.sectionTitle::after {
+    right: 0;
+    left: 50%;
+    margin-left: var(--spacing-lg);
+}
+
+.contactGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.contactItem {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: flex-start;
+    padding: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+.contactItem:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+    color: var(--color-secondary);
+    flex-shrink: 0;
+}
+
+.contactItem p {
+    margin: var(--spacing-xs) 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.contactItem p:first-child {
+    margin-top: 0;
+}
+
+.contactItem p:last-child {
+    margin-bottom: 0;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copyright p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: var(--spacing-2xl) 0 var(--spacing-lg);
+    }
+
+    .content {
+        flex-direction: column;
+        gap: var(--spacing-xl);
+        text-align: center;
+    }
+
+    .logo {
+        flex-direction: column;
+    }
+
+    .about p {
+        font-size: 0.9rem;
+    }
+
+    .contact {
+        padding: var(--spacing-lg);
+    }
+
+    .sectionTitle {
+        font-size: 1.2rem;
+    }
+
+    .contactGrid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .contactItem {
+        padding: var(--spacing-md);
+    }
+
+    .icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .contactItem p {
+        font-size: 0.85rem;
+    }
+}

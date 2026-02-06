@@ -1,36 +1,94 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FastEdu Ventures - Premium Educational Landing Page
 
-## Getting Started
+A high-performance, premium landing page for **FastEdu Ventures** (Forum for After School Tuition), migrated from WordPress to a modern **Next.js** architecture. This project emphasizes a "Wow" user experience with glassmorphism, fluid animations, and 3D visual elements.
 
-First, run the development server:
+![FastEdu Hero Preview](/public/images/logo-banner.png)
+
+## 🚀 Key Features
+
+### 🎨 Premium UI/UX
+- **Glassmorphism Design**: Frosted glass effects on cards, headers, and popups (`backdrop-filter: blur`).
+- **Vibrant Aesthetics**: Custom "Trust Blue" and "Cyan" gradient palette.
+- **Micro-Interactions**: Smooth hover states, pulse animations, and heartbeat effects.
+- **Fluid Typography**: Responsive text scaling using `clamp()` for perfect readability on all devices.
+
+### 🌟 Core Components
+- **Hero Section**: Features a dynamic **Trust & Motivation Badge** (4.9/5 Rating, Animated Stars) instead of a static logo.
+- **3D Program Carousel**: "Nano Banana" style 3D assets for program levels (Rocket, Atom, DNA, Trophy) with seamless mobile blending.
+- **"Why FAST?" Rotation**: An auto-rotating circular infographic cycling through key selling points (Question, Graduation, Medal, Quality).
+- **Premium Call Popup**: A floating "Expert Counsellor" support button with an online status indicator and gradient aesthetics.
+- **Dynamic Navigation**: Hover-activated dropdowns with a custom **"Are You FAST?"** animated SVG logo.
+
+### 📱 Fully Responsive
+- **Mobile-First**: Optimized layouts for small screens (375px+).
+- **Adaptive Interaction**: Carousels convert to stacked views with seamless gradient blending on mobile.
+- **Touch-Friendly**: appropriately sized touch targets for all interactive elements.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: Vanilla CSS Modules (Scoped styles, no utility bloat)
+- **Library**: [React 19](https://react.dev/)
+- **Font**: [Outfit](https://fonts.google.com/specimen/Outfit) (Headings) & [Inter](https://fonts.google.com/specimen/Inter) (Body)
+
+---
+
+## 📂 Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+src/
+├── app/
+│   ├── layout.tsx           # Root layout with fonts & metadata
+│   ├── page.tsx             # Main landing page composition
+│   └── globals.css          # Global variables & reset
+├── components/
+│   ├── Hero.tsx             # Hero section with Trust Badge
+│   ├── ProgramHeroCards.tsx # 3D Banner Carousel
+│   ├── WhyFast.tsx          # Rotating circular features
+│   ├── CallButton.tsx       # Floating call popup
+│   ├── Navigation.tsx       # Navbar with mega-menu
+│   └── ...
+├── data/
+│   ├── teams.ts             # Faculty data configuration
+│   └── courses.ts           # Course details configuration
+└── public/
+    └── images/              # Assets & 3D renders
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⚡ Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/fastedu-ventures.git
+    cd fastedu-ventures
+    ```
 
-## Learn More
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4.  **Open locally:**
+    Navigate to [http://localhost:3000](http://localhost:3000)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔧 Customization
 
-## Deploy on Vercel
+- **Content**: Update text data in `src/data/`.
+- **Images**: Place new assets in `public/images/`.
+- **Styles**: Edit `src/app/globals.css` for theme variables (colors, spacing).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© 2026 FastEdu Ventures. All rights reserved.
