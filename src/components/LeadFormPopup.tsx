@@ -130,11 +130,16 @@ export default function LeadFormPopup({ isOpen, onClose }: LeadFormPopupProps) {
                             onChange={handleChange}
                         >
                             <option value="">Select Course</option>
-                            <option value="JEE Mains">JEE Mains</option>
                             <option value="JEE Advanced">JEE Advanced</option>
+                            <option value="JEE Mains">JEE Mains</option>
                             <option value="NEET">NEET</option>
-                            <option value="Foundation (9-10)">Foundation (9-10)</option>
-                            <option value="Pre-Foundation (6-8)">Pre-Foundation (6-8)</option>
+                            <option value="CUET">CUET</option>
+                            <option value="NTSE">NTSE</option>
+                            <option value="KVPY">KVPY</option>
+                            <option value="RMO">RMO</option>
+                            <option value="NSEP">NSEP</option>
+                            <option value="NSEC">NSEC</option>
+                            <option value="Olympiads">Olympiads</option>
                         </select>
                     </div>
 
