@@ -1,11 +1,8 @@
-import Navigation from '@/components/Navigation';
 import ProgramHeroCards from '@/components/ProgramHeroCards';
 import Hero from '@/components/Hero';
 import TeamSection from '@/components/TeamSection';
 import CourseCard from '@/components/CourseCard';
 import WhyFast from '@/components/WhyFast';
-import Footer from '@/components/Footer';
-import CallButton from '@/components/CallButton';
 import { allTeams } from '@/data/teams';
 import { coursesData } from '@/data/courses';
 import styles from './page.module.css';
@@ -13,7 +10,6 @@ import styles from './page.module.css';
 export default function Home() {
   return (
     <main className={styles.main}>
-      <Navigation />
       <ProgramHeroCards />
       <Hero />
 
@@ -37,9 +33,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <Footer />
-      <CallButton />
     </main>
   );
 }

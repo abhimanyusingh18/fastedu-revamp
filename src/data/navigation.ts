@@ -15,7 +15,7 @@ export const navigationData: NavigationItem[] = [
         label: 'About',
         href: '#',
         dropdown: [
-            { label: 'FOUNDERS', href: '/about-us' },
+            { label: 'FOUNDERS', href: '/about/founders' },
             { label: 'What we WANT', href: '/vision-and-mission' },
             { label: "Founders' message, with love", href: '/founder-message' },
             { label: 'Career at FAST', href: '/career-at-fast' },

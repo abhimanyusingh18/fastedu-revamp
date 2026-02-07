@@ -32,6 +32,10 @@ export const metadata: Metadata = {
   ],
 };
 
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import CallButton from "@/components/CallButton";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,7 +44,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning={true}>
+        <Navigation />
         {children}
+        <Footer />
+        <CallButton />
       </body>
     </html>
   );
