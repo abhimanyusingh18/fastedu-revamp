@@ -152,9 +152,7 @@ export default function LeadFormPopup({ isOpen, onClose }: LeadFormPopupProps) {
                     </div>
 
                     {/* Cloudflare Captcha */}
-                    <div className={styles.captchaContainer}>
-                        <CloudflareCaptcha onVerify={(token) => setTurnstileToken(token)} />
-                    </div>
+                    <CloudflareCaptcha onVerify={(token) => setTurnstileToken(token)} />
 
                     <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
                         {isSubmitting ? 'Submitting...' : 'Submit & Get Call Back'}

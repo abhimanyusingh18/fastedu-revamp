@@ -125,10 +125,7 @@ const DemoPopup: React.FC<DemoPopupProps> = ({ isOpen, onClose, onSuccess }) => 
                     </div>
 
 
-
-                    <div className={styles.captchaContainer} style={{ marginBottom: '1rem' }}>
-                        <CloudflareCaptcha onVerify={(token) => setTurnstileToken(token)} />
-                    </div>
+                    <CloudflareCaptcha onVerify={(token) => setTurnstileToken(token)} />
 
                     <button type="submit" className={styles.submitButton} disabled={isSubmitting}>
                         {isSubmitting ? (
