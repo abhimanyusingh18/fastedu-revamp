@@ -148,88 +148,81 @@
         margin-right: 1rem;
     }
 
-    .ctaButton:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+}
+
+/* Mobile Styles */
+@media (max-width: 1024px) {
+    .hamburger {
+        display: flex;
     }
 
-    /* Mobile Styles */
-    @media (max-width: 1024px) {
-        .hamburger {
-            display: flex;
-        }
+    .container {
+        justify-content: space-between;
+    }
 
-        .container {
-            justify-content: space-between;
-        }
+    .menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 2rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
+        pointer-events: none;
+    }
 
-        .menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 100vh;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(15px);
-            flex-direction: column;
-            justify-content: center;
-            gap: 1.5rem;
-            padding: 2rem;
-            transform: translateY(-100%);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 999;
-            pointer-events: none;
-        }
+    .menu.mobileMenuOpen {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
 
-        .menu.mobileMenuOpen {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
+    .fastLogoWrapper {
+        display: none;
+    }
 
-        .fastLogoWrapper {
-            display: none;
-            /* Hide custom logo on mobile if space is tight */
-        }
+    .menuItemWrapper {
+        width: 100%;
+        text-align: center;
+    }
 
-        .menuItemWrapper {
-            width: 100%;
-            text-align: center;
-        }
+    .dropdown {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        background: rgba(0, 0, 0, 0.03);
+        margin-top: 0.5rem;
+        display: none;
+        opacity: 1;
+        visibility: visible;
+    }
 
-        .dropdown {
-            position: static;
-            transform: none;
-            box-shadow: none;
-            background: rgba(0, 0, 0, 0.03);
-            margin-top: 0.5rem;
-            display: none;
-            opacity: 1;
-            /* For simple display toggle */
-            visibility: visible;
-        }
+    .menuItemWrapper:hover .dropdown {
+        display: block;
+    }
 
-        .menuItemWrapper:hover .dropdown {
-            display: block;
-            /* Simple hover for mobile usually tricky, usually click. But limiting scope. */
-        }
-
-        .mobileCTA {
-            display: block;
-            width: 100%;
-            margin-top: 1rem;
-            padding: 0.8rem;
-            text-align: center;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-            color: white;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            font-size: 1.1rem;
-            border: none;
-        }
+    .mobileCTA {
+        display: block;
+        width: 100%;
+        margin-top: 1rem;
+        padding: 0.8rem;
+        text-align: center;
+        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+        color: white;
+        border-radius: var(--radius-md);
+        font-weight: 600;
+        font-size: 1.1rem;
+        border: none;
     }
 }

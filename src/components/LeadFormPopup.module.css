@@ -7,7 +7,7 @@
     height: 100%;
     background: rgba(15, 23, 42, 0.6);
     backdrop-filter: blur(8px);
-    z-index: 2000;
+    z-index: 10000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -312,5 +312,38 @@
     to {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .modal {
+        padding: 1.5rem;
+        max-height: 95vh;
+        width: 95%;
+        border-radius: 16px;
+    }
+
+    .header {
+        margin-bottom: 1.5rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .inputGroup {
+        margin-bottom: 1rem;
+    }
+
+    .input,
+    .select,
+    .textarea {
+        font-size: 16px;
+        /* Prevents zoom on iOS */
     }
 }
