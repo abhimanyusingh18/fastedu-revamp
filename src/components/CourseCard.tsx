@@ -4,9 +4,10 @@ import { Course } from '@/data/courses';
 interface CourseCardProps {
     course: Course;
     index: number;
+    onBookDemo: () => void;
 }
 
-export default function CourseCard({ course, index }: CourseCardProps) {
+export default function CourseCard({ course, index, onBookDemo }: CourseCardProps) {
     const colorClasses = {
         cyan: styles.cyan,
         blue: styles.blue,
@@ -30,8 +31,8 @@ export default function CourseCard({ course, index }: CourseCardProps) {
                     </p>
                 ))}
             </div>
-            <button className={styles.button}>
-                <span>View Details</span>
+            <button className={styles.button} onClick={onBookDemo}>
+                <span>Book Demo</span>
                 <svg
                     width="20"
                     height="20"

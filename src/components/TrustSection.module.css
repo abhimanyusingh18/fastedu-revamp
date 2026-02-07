@@ -1,0 +1,163 @@
+.section {
+    padding: var(--spacing-4xl) 0;
+    background: linear-gradient(to bottom, white, #f8fafc);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+}
+
+.title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-primary-dark);
+    margin-bottom: var(--spacing-sm);
+}
+
+.underline {
+    width: 60px;
+    height: 4px;
+    background: var(--color-secondary);
+    margin: 0 auto;
+    border-radius: var(--radius-full);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-2xl);
+    align-items: start;
+    margin-bottom: var(--spacing-3xl);
+}
+
+.reviewCard {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    transition: transform var(--transition-base);
+}
+
+.reviewCard:hover {
+    transform: translateY(-5px);
+}
+
+.reviewImageWrapper {
+    margin-bottom: var(--spacing-md);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+}
+
+.reviewImage {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.reviewCaption {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+}
+
+.testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.testimonialCard {
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.quoteIcon {
+    font-size: 4rem;
+    color: rgba(37, 99, 235, 0.1);
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    line-height: 1;
+    font-family: serif;
+}
+
+.text {
+    position: relative;
+    z-index: 1;
+    font-style: italic;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+}
+
+.author {
+    border-top: 1px solid #f1f5f9;
+    padding-top: var(--spacing-md);
+}
+
+.name {
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+}
+
+.role {
+    font-size: 0.85rem;
+    color: var(--color-secondary);
+    font-weight: 600;
+}
+
+.resultsBar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    background: var(--color-primary-dark);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-2xl);
+    color: white;
+    text-align: center;
+    box-shadow: var(--shadow-xl);
+}
+
+.resultNumber {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.resultLabel {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .reviewCard {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .resultsBar {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+}

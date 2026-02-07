@@ -5,9 +5,11 @@ import styles from './Navigation.module.css';
 import { navigationData } from '@/data/navigation';
 import Link from 'next/link';
 import { AreYouFastLogo } from './AreYouFastLogo';
+import DemoPopup from './DemoPopup';
 
 export default function Navigation() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [isDemoOpen, setIsDemoOpen] = useState(false);
 
     return (
         <nav className={styles.nav}>
@@ -52,13 +54,34 @@ export default function Navigation() {
                             )}
                         </div>
                     ))}
+                    <button
+                        className={styles.mobileCTA}
+                        onClick={() => {
+                            setMobileMenuOpen(false);
+                            setIsDemoOpen(true);
+                        }}
+                    >
+                        Book Free Demo
+                    </button>
                 </div>
 
-                {/* Extreme Right Logo */}
+                {/* Extreme Right Logo & CTA */}
                 <div className={styles.fastLogoWrapper}>
+                    <button
+                        className={styles.ctaButton}
+                        onClick={() => setIsDemoOpen(true)}
+                    >
+                        Book Free Demo
+                    </button>
                     <AreYouFastLogo />
                 </div>
             </div>
+
+            <DemoPopup
+                isOpen={isDemoOpen}
+                onClose={() => setIsDemoOpen(false)}
+                onSuccess={() => setIsDemoOpen(false)}
+            />
         </nav>
     );
 }

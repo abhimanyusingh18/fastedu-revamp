@@ -1,5 +1,6 @@
 import styles from './Hero.module.css';
 import Image from 'next/image';
+import HeadlineCarousel from './HeadlineCarousel';
 
 export default function Hero() {
     return (
@@ -33,10 +34,7 @@ export default function Hero() {
                 </div>
 
                 <div className={styles.titleSection}>
-                    <h1 className={styles.title}>
-                        ARE YOU <span className={styles.highlight}>FAST</span>?
-                    </h1>
-                    <div className={styles.underline}></div>
+                    <HeadlineCarousel />
                 </div>
             </div>
         </section>
