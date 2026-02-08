@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './LeadFormPopup.module.css';
 import CloudflareCaptcha from './CloudflareCaptcha';
+import SuccessPopup from './SuccessPopup';
 import { verifyTurnstile } from '../actions/verifyTurnstile';
 import { getTurnstileToken } from '../utils/captchaManager';
 
@@ -14,6 +15,7 @@ interface LeadFormPopupProps {
 export default function LeadFormPopup({ isOpen, onClose }: LeadFormPopupProps) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [turnstileToken, setTurnstileToken] = useState('');
+    const [showSuccess, setShowSuccess] = useState(false);
 
     // Form State
     const [formData, setFormData] = useState({
@@ -36,7 +38,28 @@ export default function LeadFormPopup({ isOpen, onClose }: LeadFormPopupProps) {
     }, [isOpen]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+
+        // Phone number validation: only digits, max 10, first digit 5-9
+        if (name === 'phone') {
+            // Remove non-digits
+            const digitsOnly = value.replace(/\D/g, '');
+
+            // Limit to 10 digits
+            const limited = digitsOnly.slice(0, 10);
+
+            // If first digit exists, ensure it's 5-9
+            if (limited.length > 0) {
+                const firstDigit = parseInt(limited[0]);
+                if (firstDigit < 5 || firstDigit > 9) {
+                    return; // Don't update if first digit is invalid
+                }
+            }
+
+            setFormData({ ...formData, [name]: limited });
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -45,6 +68,18 @@ export default function LeadFormPopup({ isOpen, onClose }: LeadFormPopupProps) {
         // Validate Captcha
         if (!turnstileToken) {
             alert("Please verify you are human.");
+            return;
+        }
+
+        // Validate phone number
+        if (formData.phone.length !== 10) {
+            alert("Please enter a valid 10-digit phone number.");
+            return;
+        }
+
+        const firstDigit = parseInt(formData.phone[0]);
+        if (firstDigit < 5 || firstDigit > 9) {
+            alert("Phone number must start with a digit between 5-9.");
             return;
         }
 
@@ -59,19 +94,39 @@ export default function LeadFormPopup({ isOpen, onClose }: LeadFormPopupProps) {
         }
 
         // Mock Submission to Google Sheets
-        // In production, send formData and turnstileToken to backend for verification
         console.log("Submitting Lead Form to Google Sheet (Mock):", { ...formData, turnstileToken });
 
-        // Simulate Network Delay
-        setTimeout(() => {
-            setIsSubmitting(false);
-            onClose();
-            localStorage.setItem('hasSubmittedLeadForm', 'true');
-            alert("Thank you! We will contact you shortly.");
-        }, 1500);
+        // Show success popup FIRST
+        setShowSuccess(true);
+        setIsSubmitting(false);
+
+        localStorage.setItem('hasSubmittedLeadForm', 'true');
+
+        // Reset form
+        setFormData({
+            name: '',
+            phone: '',
+            email: '',
+            course: '',
+            message: ''
+        });
     };
 
     if (!isOpen) return null;
+
+    if (showSuccess) {
+        return (
+            <SuccessPopup
+                isOpen={true}
+                onClose={() => {
+                    setShowSuccess(false);
+                    onClose();
+                }}
+                title="Thank You!"
+                message="We will contact you shortly."
+            />
+        );
+    }
 
     return (
         <div className={styles.overlay} onClick={onClose}>
@@ -124,10 +179,12 @@ export default function LeadFormPopup({ isOpen, onClose }: LeadFormPopupProps) {
                             id="email"
                             name="email"
                             required
+                            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
                             className={styles.input}
                             value={formData.email}
                             onChange={handleChange}
                             placeholder="your@email.com"
+                            title="Please enter a valid email address (e.g., user@example.com)"
                         />
                     </div>
 

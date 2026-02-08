@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './DemoPopup.module.css';
 import CloudflareCaptcha from './CloudflareCaptcha';
+import SuccessPopup from './SuccessPopup';
 import { verifyTurnstile } from '../actions/verifyTurnstile';
 import { getTurnstileToken } from '../utils/captchaManager';
 
@@ -15,6 +16,7 @@ interface DemoPopupProps {
 const DemoPopup: React.FC<DemoPopupProps> = ({ isOpen, onClose, onSuccess }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [turnstileToken, setTurnstileToken] = useState('');
+    const [showSuccess, setShowSuccess] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -46,6 +48,18 @@ const DemoPopup: React.FC<DemoPopupProps> = ({ isOpen, onClose, onSuccess }) => 
             return;
         }
 
+        // Validate phone number
+        if (formData.phone.length !== 10) {
+            alert("Please enter a valid 10-digit phone number.");
+            return;
+        }
+
+        const firstDigit = parseInt(formData.phone[0]);
+        if (firstDigit < 5 || firstDigit > 9) {
+            alert("Phone number must start with a digit between 5-9.");
+            return;
+        }
+
         setIsSubmitting(true);
 
         const verification = await verifyTurnstile(turnstileToken);
@@ -55,20 +69,58 @@ const DemoPopup: React.FC<DemoPopupProps> = ({ isOpen, onClose, onSuccess }) => 
             return;
         }
 
-        // Mock Submission Delay (2 seconds)
-        setTimeout(() => {
-            setIsSubmitting(false);
-            onSuccess(); // Trigger Success Popup
-            onClose();   // Close Form
+        // Mock Submission Delay
+        // Mock Submission Delay
+        // Show success popup FIRST
+        setShowSuccess(true);
+        setIsSubmitting(false);
 
-            // Console log for verification (Mock Backend)
-            console.log("Demo Form Submitted:", formData);
-        }, 2000);
+        // Reset form
+        setFormData({ name: '', phone: '', class: '' });
+
+        // Console log for verification (Mock Backend)
+        console.log("Demo Form Submitted:", formData);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+
+        // Phone number validation: only digits, max 10, first digit 5-9
+        if (name === 'phone') {
+            // Remove non-digits
+            const digitsOnly = value.replace(/\D/g, '');
+
+            // Limit to 10 digits
+            const limited = digitsOnly.slice(0, 10);
+
+            // If first digit exists, ensure it's 5-9
+            if (limited.length > 0) {
+                const firstDigit = parseInt(limited[0]);
+                if (firstDigit < 5 || firstDigit > 9) {
+                    return; // Don't update if first digit is invalid
+                }
+            }
+
+            setFormData({ ...formData, [name]: limited });
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
     };
+
+    if (showSuccess) {
+        return (
+            <SuccessPopup
+                isOpen={true}
+                onClose={() => {
+                    setShowSuccess(false);
+                    onClose();
+                    onSuccess();
+                }}
+                title="Thank You!"
+                message="We will contact you shortly."
+            />
+        );
+    }
 
     return (
         <div className={styles.overlay} onClick={onClose}>
@@ -141,8 +193,8 @@ const DemoPopup: React.FC<DemoPopupProps> = ({ isOpen, onClose, onSuccess }) => 
                         ) : 'Book Free Demo'}
                     </button>
                 </form>
-            </div >
-        </div >
+            </div>
+        </div>
     );
 };
 
