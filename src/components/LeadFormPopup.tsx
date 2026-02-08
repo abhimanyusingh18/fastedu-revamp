@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './LeadFormPopup.module.css';
 import CloudflareCaptcha from './CloudflareCaptcha';
 import { verifyTurnstile } from '../actions/verifyTurnstile';
+import { getTurnstileToken } from '../utils/captchaManager';
 
 interface LeadFormPopupProps {
     isOpen: boolean;
@@ -22,6 +23,17 @@ export default function LeadFormPopup({ isOpen, onClose }: LeadFormPopupProps) {
         course: '',
         message: ''
     });
+
+    // Check for existing valid token when form opens
+    useEffect(() => {
+        if (isOpen) {
+            const existingToken = getTurnstileToken();
+            if (existingToken) {
+                setTurnstileToken(existingToken);
+                console.log('LeadFormPopup: Using existing token from storage');
+            }
+        }
+    }, [isOpen]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });

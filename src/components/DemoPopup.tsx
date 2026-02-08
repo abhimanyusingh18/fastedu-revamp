@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './DemoPopup.module.css';
 import CloudflareCaptcha from './CloudflareCaptcha';
 import { verifyTurnstile } from '../actions/verifyTurnstile';
+import { getTurnstileToken } from '../utils/captchaManager';
 
 interface DemoPopupProps {
     isOpen: boolean;
@@ -20,11 +21,18 @@ const DemoPopup: React.FC<DemoPopupProps> = ({ isOpen, onClose, onSuccess }) => 
         class: ''
     });
 
-    // Reset form when reopened
+    // Reset form when reopened and check for existing token
     useEffect(() => {
         if (isOpen) {
             setFormData({ name: '', phone: '', class: '' });
             setIsSubmitting(false);
+
+            // Check for existing valid token
+            const existingToken = getTurnstileToken();
+            if (existingToken) {
+                setTurnstileToken(existingToken);
+                console.log('DemoPopup: Using existing token from storage');
+            }
         }
     }, [isOpen]);
 
